@@ -1,0 +1,52 @@
+.header {
+  padding: 0px;
+  background-color: #ffffff; /* Header background is white */
+  display: flex;
+  justify-content: space-between; /* Space between logo/title and logout button */
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+
+  .logo {
+    width: 100px; /* Adjust the logo size */
+    margin-right: 20px;
+  }
+
+  .title-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 400;
+      color: #666;
+    }
+  }
+}
+
+.logout-btn {
+  background-color: #ffcc00;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #ffb900;
+  }
+}

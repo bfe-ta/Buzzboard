@@ -1,0 +1,27 @@
+<div class="content">
+  <div class="content-header">
+    <span class="updated-on">Updated on 28/08/2024</span>
+  </div>
+
+  <div class = "leaderboard">
+    <div class="leaderboard-header">
+      <div class="leaderboard-item">Rank</div>
+      <div class="leaderboard-item">User</div>
+      <div class="leaderboard-item" *ngIf="data.length && data[0].Company">Company</div>
+      <div class="leaderboard-item">Department</div>
+      <div class="leaderboard-item">Reuse Count</div>
+    </div>
+
+    <div *ngFor="let item of data" class="leaderboard-row">
+      <div class="leaderboard-item">{{ item.Rank }}</div>
+      <div class="leaderboard-item">{{ item.User }}</div>
+      <div class="leaderboard-item" *ngIf="item.Company">{{ item.Company }}</div>
+      <div class="leaderboard-item">{{ item.Department }}</div>
+      <div class="leaderboard-item">{{ item['Reuse Count'] }}</div>
+    </div>
+  </div>
+</div>
+
+
+
+  

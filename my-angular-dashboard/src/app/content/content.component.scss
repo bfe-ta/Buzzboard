@@ -1,0 +1,58 @@
+.content {
+  padding: 0px;
+  flex: 1;
+  background-color: #ffffff;
+
+  .content-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+
+    .updated-on {
+      font-size: 14px;
+      color: #888;
+    }
+  }
+
+  .leaderboard {
+    padding: 0px;
+    background-color: #ffffff;
+    overflow: hidden;
+
+    .leaderboard-header {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background-color: #ffcc00;
+      border-radius: 15px;
+      padding: 15px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .leaderboard-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 15px;
+      text-align: center;
+      border-bottom: 1px solid #f0f0f0;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .medal {
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        margin-right: 5px;
+        background-size: contain;
+      }
+
+      strong {
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+  
