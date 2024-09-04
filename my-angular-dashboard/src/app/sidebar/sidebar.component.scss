@@ -1,47 +1,57 @@
 .sidebar {
-  width: 80px; /* Fixed width for the sidebar */
+  width: 100px; /* Fixed width for the sidebar */
   height: 100vh; /* Full height of the viewport */
   background-color: #f0f4ff; /* Sidebar background color */
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 20px;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Shadow for separation */
+  border-radius: 20px;
+  box-shadow: 3px 0 3px rgba(0, 0, 0, 0.1); /* Shadow for separation */
   position: relative; /* Ensure it stays in its place within the flexbox layout */
 
   .sidebar-logo {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 
     .logo {
-      width: 70px; /* Adjusted size for the logo */
+      width: 80px; /* Adjusted size for the logo */
     }
   }
 
   .menu {
-    flex-grow: 1; /* Pushes menu items down */
     width: 100%;
     text-align: center;
 
     ul {
+      font-family: 'Poppins', sans-serif;
       list-style-type: none;
       padding: 0;
       margin: 0;
 
       li {
+        display: flex;
+        flex-direction: column; /* Stack icon above text */
+        align-items: center;
+        justify-content: center;
         padding: 15px;
         cursor: pointer;
         transition: background-color 0.3s ease;
-
-        &:hover {
-          background-color: #e0e7ff;
+        border-radius: 10px; /* Rounded corners for nav item */
+        
+        &:hover,
+        &.active {
+          background-color: #d3d3d3; /* Darker grey when active or hovered */
         }
 
-        i {
-          font-size: 24px;
-          margin-right: 10px;
+        .chart-image {
+          width: 40px; /* Adjust icon size */
+          margin-bottom: 5px; /* Space between icon and text */
+        }
+
+        span {
+          font-size: 14px; /* Adjust text size */
         }
       }
     }
   }
 }
-
