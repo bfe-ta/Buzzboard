@@ -1,32 +1,35 @@
 body {
-    font-family: 'Poppins', sans-serif; 
-    background-image: url('/assets/mustardyellowbg.png');
-    background-size: cover; // Make sure the background covers the entire page
-    background-position: center; // Center the background image
-    display: flex;
-    justify-content: center; // Centers the container horizontally
-    align-items: center; // Centers the container vertically
-    height: 100vh; // Ensures the body takes up the full viewport height
-    margin: 0; // Removes default margin
+  font-family: 'Poppins', sans-serif; 
+  background-image: url('/assets/mustardyellowbg.png');
+  background-size: 200% ; 
+  background-position: center; // Center the background image
+  display: flex;
+  justify-content: center; // Centers the container horizontally
+  align-items: center; // Centers the container vertically
+  height: 100vh; // Ensures the body takes up the full viewport height
+  margin: 0; // Removes default margin
+  padding: 0;
+  overflow: hidden;
+
   }
   
   .login-container {
     font-family: 'Poppins', sans-serif;
-    background-color: #fff; // White background for the login form
+    background-color: #fff;
     padding: 30px;
     border-radius: 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: left; // Align text to the left within the container
-    width: 350px; // Fixed width for the login form
+    text-align: left; 
+    width: 400px; 
     max-width: 90%; // Ensures responsiveness on smaller screens
   }
   
   h1 {
     font-size: 32px;
-    margin-top: 0dvb;
+    margin-top: 0px;
     margin-bottom: 20px;
-    color: #000; // Black text color for the header
-    text-align: left; // Align the "Log-in" header to the left
+    color: #000; 
+    text-align: left; 
   }
   
   .form-group {
@@ -38,7 +41,7 @@ body {
     display: block;
     font-size: 18px;
     margin-bottom: 5px;
-    color: #545353; // Black text color for the labels
+    color: #545353; 
   }
   
   input {
@@ -63,13 +66,16 @@ body {
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
-    border-radius: 5px;
+    border-radius: 15px;
+    border: 2px solid #000;
+    width: 200px;
+    height:50px;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
   
   .login-button:hover {
-    background-color: #ffdb4d; // Slightly lighter yellow on hover
+    background-color: #ffdb4d; 
   }
 
   .button-container {
