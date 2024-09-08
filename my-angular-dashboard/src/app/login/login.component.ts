@@ -14,6 +14,7 @@ export class LoginComponent {
   login() {
     // Simulate a successful login and store a mock JWT token
     localStorage.setItem('token', 'mock-jwt-token');
+    localStorage.setItem('type', 'admin');
     this.router.navigate(['/dashboard']); // Navigate to the dashboard
   }
 }
