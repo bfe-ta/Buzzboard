@@ -1,12 +1,12 @@
 body {
   font-family: 'Poppins', sans-serif; 
   background-image: url('/assets/mustardyellowbg.png');
-  background-size: 200% ; 
+  background-size: 300% ; 
   background-position: center; // Center the background image
   display: flex;
   justify-content: center; // Centers the container horizontally
   align-items: center; // Centers the container vertically
-  height: 100vh; // Ensures the body takes up the full viewport height
+  height: 100dvh; // Ensures the body takes up the full viewport height
   margin: 0; // Removes default margin
   padding: 0;
   overflow: hidden;
