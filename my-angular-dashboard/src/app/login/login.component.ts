@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';    // For ngModel
   imports: [CommonModule, FormsModule]  // Import CommonModule and FormsModule
 })
 export class LoginComponent {
-  credentials = { email: '', password: '' };  
+  credentials = { username: '', password: '' };  
   errorMessage = '';  
 
   constructor(
