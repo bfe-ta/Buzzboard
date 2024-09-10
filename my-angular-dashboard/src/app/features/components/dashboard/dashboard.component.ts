@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { HeaderComponent } from '../header/header.component';
-import { SidebarComponent } from '../sidebar/sidebar.component';
-import { ContentComponent } from '../content/content.component';
+import { HeaderComponent } from '../../../shared/components/header/header.component';
+import { SidebarComponent } from '../../../shared/components/sidebar/sidebar.component';
+import { ContentComponent } from '../../../shared/components/content/content.component';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
