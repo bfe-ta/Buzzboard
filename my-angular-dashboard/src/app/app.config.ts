@@ -4,8 +4,7 @@ import { appRoutes } from './app.routes';
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(appRoutes), // Initialize the routes
-    // Other module imports as necessary
+    RouterModule.forRoot(appRoutes), 
   ],
   exports: [RouterModule],
 })
