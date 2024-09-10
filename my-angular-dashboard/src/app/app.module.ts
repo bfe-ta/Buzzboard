@@ -8,18 +8,15 @@ import { LoginComponent } from './login/login.component';
 import { ContentComponent } from './content/content.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    ContentComponent
-  ],
   imports: [
     BrowserModule,
     CommonModule,  
     FormsModule,  
     HttpClientModule,
+    AppComponent,
+    LoginComponent,
+    ContentComponent
   ],
   providers: [],
-  bootstrap: [AppComponent]
 })
 export class AppModule { }
