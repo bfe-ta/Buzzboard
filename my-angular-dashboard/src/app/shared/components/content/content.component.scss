@@ -1,4 +1,6 @@
 .content {
+  font-family: 'Poppins', sans-serif; 
+  font-weight: 300px;
   padding: 0px;
   flex: 1;
   background-color: #ffffff;
@@ -10,28 +12,31 @@
 
     .updated-on {
       font-size: 14px;
+      font-style: italic;
       color: #888;
     }
   }
 
   .leaderboard {
     padding: 0px;
+    border-radius: 30px;
     background-color: #ffffff;
     overflow: hidden;
 
     .leaderboard-header {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: 0.5fr 1fr 2fr 1.5fr; 
       background-color: #ffcc00;
       border-radius: 15px;
-      padding: 15px;
+      padding: 10px;
       font-weight: bold;
       text-align: center;
+      color: #545353;
     }
 
     .leaderboard-row {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: 0.5fr 1fr 2fr 1.5fr; 
       padding: 15px;
       text-align: center;
       border-bottom: 1px solid #f0f0f0;

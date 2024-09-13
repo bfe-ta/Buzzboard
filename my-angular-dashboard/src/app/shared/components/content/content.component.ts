@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Import this
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-content',
@@ -11,5 +11,3 @@ import { CommonModule } from '@angular/common'; // Import this
 export class ContentComponent {
   @Input() data: any[] = [];
 }
-
-
