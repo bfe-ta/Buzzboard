@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';    
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { ContentComponent } from './content/content.component';
+import { LoginComponent } from './features/login/login.component';
+import { ContentComponent } from './shared/content/content.component';
 
 @NgModule({
   imports: [
