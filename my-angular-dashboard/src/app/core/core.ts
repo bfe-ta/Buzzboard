@@ -1,6 +1,9 @@
 import { Provider, EnvironmentProviders, InjectionToken, ErrorHandler, inject, ENVIRONMENT_INITIALIZER } from '@angular/core';
 import { provideRouter, Routes } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenService } from './tokens/token.service';
+import { SessionStorageService } from './storage/session-storage.service';
+import { UserManagementService } from './user-management/user-management.service';
 import { AuthGuard } from './auth/auth.guard';
 import { AdminGuard } from './auth/admin.guard';
 // import { ApiKeyInterceptor } from './interceptors/api-key.interceptor';  // Your interceptors
@@ -24,6 +27,9 @@ export function provideCore(options: CoreOptions): (Provider | EnvironmentProvid
     // { provide: ErrorHandler, useClass: BackendErrorHandler },      // Custom error handler
     // { provide: HTTP_INTERCEPTORS, multi: true, useClass: ApiKeyInterceptor },  // API key interceptor
     { provide: CORE_GUARD, useValue: 'CORE_GUARD' },               // Prevent multiple imports
+    { provide: TokenService, useClass: TokenService },              //import token service
+    { provide: UserManagementService, useClass: UserManagementService },             //import usermanagement
+    { provide: SessionStorageService, useClass: SessionStorageService }, // Session storage provider
     { provide: AuthGuard, useClass: AuthGuard },                   // AuthGuard
     { provide: AdminGuard, useClass: AdminGuard },                 // AdminGuard
 
@@ -38,6 +44,8 @@ export function provideCore(options: CoreOptions): (Provider | EnvironmentProvid
       provide: ENVIRONMENT_INITIALIZER,
       multi: true,
       useValue: () => {
+        const tokenService = inject(TokenService);  // Inject TokenService
+        const sessionService = inject(SessionStorageService);  // Inject SessionStorageService
         const pollInterval = inject(RELOAD_SERVICE_POLL_INTERVAL);
         
         console.log('[Core] Application started!');
@@ -50,3 +58,8 @@ export function provideCore(options: CoreOptions): (Provider | EnvironmentProvid
     },
   ];
 }
+
+
+
+
+
