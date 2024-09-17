@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 import { CommonModule } from '@angular/common';
+import { TokenService } from '../../../core/tokens/token.service';
+import { UserManagementService } from '../../../core/user-management/user-management.service';
 
 @Component({
   selector: 'app-admin-panel',
@@ -20,60 +22,44 @@ export class AdminPanelComponent {
     type: 'user',
   };
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private userManagementService: UserManagementService) {
     this.loadActiveUsers();
   }
 
   // Load all active users
   loadActiveUsers() {
-    const token = localStorage.getItem('token');
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'x-access-token': `Bearer ${token}`
-      }),
+    this.userManagementService.getActiveUsers().subscribe(
+    (response) => {
+      this.users = response;
+    },
+    (error) => {
+      console.error('Login error', error);
     }
-
-    this.http.get<any[]>('/api/admin/active-users', httpOptions).subscribe({
-      next: (users) => (this.users = users),
-      error: (error) => console.error('Error loading users', error),
-    });
+    );
   }
 
   // Register new user
   registerUser() {
-    const token = localStorage.getItem('token');
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'x-access-token': `Bearer ${token}`
-      }),
-    }
-
-    this.http.post('/api/admin/create-account', this.newUser, httpOptions).subscribe({
-      next: () => {
-        alert('User created successfully!');
-        this.loadActiveUsers();  // Reload the user list
+    this.userManagementService.registerUser(this.newUser).subscribe(
+      (response) => {
+        console.info(response.message);
       },
-      error: (error) => console.error('Error creating user', error),
-    });
+      (error) => {
+        console.error('Login error', error);
+      }
+    );
   }
 
   // Deactivate a user
-  deactivateUser(userId: string) {
-    const token = localStorage.getItem('token');
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'x-access-token': `Bearer ${token}`
-      }),
-    }
-
-    this.http.post(`/api/admin/deactivate-account/${userId}`, {}, httpOptions).subscribe({
-      next: () => {
-        alert('User deactivated successfully!');
-        this.loadActiveUsers();  // Reload the user list
+  deactivateUser(userId: number) {
+    this.userManagementService.deactivateUser(userId).subscribe(
+      (response) => {
+        console.info(response.message);
       },
-      error: (error) => console.error('Error deactivating user', error),
-    });
+      (error) => {
+        console.error('Login error', error);
+      }
+    );
   }
 
   onFileSelected(event: Event): void {
@@ -91,17 +77,12 @@ export class AdminPanelComponent {
       console.error('No file selected!');
       return;
     }
-
-    const formData = new FormData();
-    formData.append('file', this.selectedFile);
-
-    // Replace '/api/upload' with your actual API endpoint
-    this.http.post('/api/upload', formData).subscribe(
+    this.userManagementService.uploadFile(this.selectedFile).subscribe(
       (response) => {
-        console.log('Upload successful', response);
+        console.info(response.message);
       },
       (error) => {
-        console.error('Upload failed', error);
+        console.error('Login error', error);
       }
     );
   }
