@@ -3,10 +3,11 @@ import { SessionStorageService } from '../storage/session-storage.service';  // 
 
 @Injectable()
 export class TokenService {
-  private tokenKey: string = 'auth-token';
-  private userKey: string = 'auth-user';
 
-  constructor(private sessionStorageService: SessionStorageService) {}  // Inject SessionStorageService
+  private tokenKey = 'id_token';  // Add the token key
+  private userKey = 'user';  // Add the user key
+
+  constructor(private sessionStorageService: SessionStorageService) {}
 
   // Save the JWT token to sessionStorage
   saveToken(token: string): void {
@@ -23,12 +24,12 @@ export class TokenService {
     this.sessionStorageService.removeItem(this.tokenKey);
   }
 
-  // Save user details in sessionStorage (optional)
+  // Save user details (including expiration) to sessionStorage
   saveUser(user: any): void {
     this.sessionStorageService.setItem(this.userKey, JSON.stringify(user));
   }
 
-  // Retrieve user details from sessionStorage (optional)
+  // Retrieve user details from sessionStorage
   getUser(): any {
     const user = this.sessionStorageService.getItem(this.userKey);
     if (user) {
@@ -47,4 +48,3 @@ export class TokenService {
     this.sessionStorageService.clear();
   }
 }
-
