@@ -6,6 +6,7 @@ import { SessionStorageService } from './storage/session-storage.service';
 import { UserManagementService } from './user-management/user-management.service';
 import { AuthGuard } from './auth/auth.guard';
 import { AdminGuard } from './auth/admin.guard';
+import { AuthService } from './auth/auth.service';
 // import { ApiKeyInterceptor } from './interceptors/api-key.interceptor';  // Your interceptors
 // import { BackendErrorHandler } from './error-handlers/backend-error-handler';  // Error handler
 
@@ -32,7 +33,7 @@ export function provideCore(options: CoreOptions): (Provider | EnvironmentProvid
     { provide: SessionStorageService, useClass: SessionStorageService }, // Session storage provider
     { provide: AuthGuard, useClass: AuthGuard },                   // AuthGuard
     { provide: AdminGuard, useClass: AdminGuard },                 // AdminGuard
-
+    { provide: AuthService, useClass: AuthService},
     // Parametrize services with options (reloadServicePollInterval)
     {
       provide: RELOAD_SERVICE_POLL_INTERVAL,

@@ -8,11 +8,11 @@ import moment from 'moment';
 @Injectable()
 export class AuthService {
 
-  private apiUrl = 'http://localhost:8080/api/auth/signin';  
+  private apiUrl = 'http://localhost:8080/api/auth';  
   constructor(private http: HttpClient, private tokenService: TokenService) {}
 
-  login(email: string, password: string) {
-    return this.http.post<User>(`${this.apiUrl}/login`, { email, password })
+  login(username: string, password: string) {
+    return this.http.post<User>(`${this.apiUrl}/signin`, { username, password })
       .pipe(
         tap(res => this.setSession(res)),  // Use `tap` instead of `do`
         shareReplay()  // Keep shareReplay() to prevent re-execution of HTTP calls
@@ -21,8 +21,11 @@ export class AuthService {
       
   private setSession(authResult: any) {
       const expiresAt = moment().add(authResult.expiresIn,'second');
-      this.tokenService.saveToken(authResult.idToken); // Save the token
-      this.tokenService.saveUser({ expiresAt }); // Save expiration in user data
+      this.tokenService.saveToken(authResult.accessToken); // Save the token
+      this.tokenService.saveUser({
+        ...authResult,  // Spread all fields from authResult
+        expiresAt       // Add the expiration time
+      }); // Save expiration in user data
   }          
 
   logout() {
