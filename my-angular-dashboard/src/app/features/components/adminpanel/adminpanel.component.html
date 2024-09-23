@@ -1,0 +1,46 @@
+<div class="admin-panel">
+  <h1>Admin Panel</h1>
+
+  <!-- User Registration Section -->
+  <h2>Create New User</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
+    <label>
+      Username: 
+      <input formControlName="username" required />
+    </label>
+    <label>
+      Password: 
+      <input formControlName="password" type="password" required />
+    </label>
+    <label>
+      Company: 
+      <input formControlName="company" required />
+    </label>
+    <label>
+      Type:
+      <select formControlName="type">
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+      </select>
+    </label>
+    <button type="submit" [disabled]="registerForm.invalid">Create User</button>
+  </form>
+
+  <!-- File Upload Section -->
+  <h2>Upload CSV or XLSX File</h2>
+  <input type="file" (change)="onFileSelected($event)" accept=".csv" />
+  <button (click)="uploadFile()">Upload File</button>
+
+  <!-- Active Users Section -->
+  <h2>Active Users</h2>
+  <ul>
+    <li *ngFor="let user of users">
+      {{ user.username }}
+      <button (click)="deactivateUser(user.id)">Deactivate</button>
+    </li>
+  </ul>
+</div>
+
+
+  
+  

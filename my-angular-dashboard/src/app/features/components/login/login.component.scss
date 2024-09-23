@@ -1,0 +1,85 @@
+body {
+  font-family: 'Poppins', sans-serif; 
+  background-image: url('/assets/mustardyellowbg.png');
+  background-size: 300% ; 
+  background-position: center; // Center the background image
+  display: flex;
+  justify-content: center; // Centers the container horizontally
+  align-items: center; // Centers the container vertically
+  height: 100dvh; // Ensures the body takes up the full viewport height
+  margin: 0; // Removes default margin
+  padding: 0;
+  overflow: hidden;
+
+  }
+  
+  .login-container {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left; 
+    width: 400px; 
+    max-width: 90%; // Ensures responsiveness on smaller screens
+  }
+  
+  h1 {
+    font-size: 32px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    color: #000; 
+    text-align: left; 
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  label {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #545353; 
+  }
+  
+  input {
+    font-family: 'Poppins', sans-serif;
+    width: calc(100% - 20px);
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: #f2f2f2;
+  }
+  
+  input::placeholder {
+    color: #c6c6c6; 
+  }
+  
+  .login-button {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffcc00; 
+    color: #000; 
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 15px;
+    border: 2px solid #000;
+    width: 200px;
+    height:50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-button:hover {
+    background-color: #ffdb4d; 
+  }
+
+  .button-container {
+    display: flex; 
+    justify-content: center; 
+  }
+  
