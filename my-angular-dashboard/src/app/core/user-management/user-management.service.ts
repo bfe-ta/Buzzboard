@@ -15,7 +15,7 @@ export class UserManagementService {
   constructor(private http: HttpClient, private router: Router, private authService: AuthService, private tokenService: TokenService, private sessionStorageService: SessionStorageService) {}
 
   // Set up headers with token
-  private getHeaders(): HttpHeaders {
+  getHeaders(): HttpHeaders {
     const token = this.tokenService.getToken();
     return new HttpHeaders().set('x-access-token', token || '');
   }
@@ -34,7 +34,7 @@ export class UserManagementService {
 
   // Get all active users (admin-only functionality)
   getActiveUsers(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/active-users`, {
+    return this.http.get(`${this.apiUrl}/active-user-list`, {
       headers: this.getHeaders(),
     });
   }
@@ -42,15 +42,6 @@ export class UserManagementService {
   // Deactivate a user (admin-only functionality)
   deactivateUser(userId: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/deactivate/${userId}`, {
-      headers: this.getHeaders(),
-    });
-  }
-
-  // Upload file
-  uploadFile(file: File): Observable<any> {
-    const formData = new FormData();
-    formData.append('file', file);
-    return this.http.post(`${this.apiUrl}/upload`, formData, {
       headers: this.getHeaders(),
     });
   }

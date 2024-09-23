@@ -1,42 +1,43 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HeaderComponent } from '../../../shared/components/header/header.component';
 import { SidebarComponent } from '../../../shared/components/sidebar/sidebar.component';
 import { ContentComponent } from '../../../shared/components/content/content.component';
+import { DataManagementService } from '../../../core/data/data-management.service';
+import { CommonModule } from '@angular/common';
+import { DatePipe } from '@angular/common';  // Import DatePipe
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [HeaderComponent, SidebarComponent, ContentComponent],
+  imports: [HeaderComponent, SidebarComponent, ContentComponent, CommonModule],
+  providers: [DatePipe],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent implements OnInit {
   data: any[] = [];
+  updatedOn: string = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private dataManagementService: DataManagementService, private datePipe: DatePipe) {}
 
   ngOnInit(): void {
     this.loadData();
   }
 
   loadData(): void {
-    const token = localStorage.getItem('token'); // Retrieve the JWT token from localStorage
+    this.dataManagementService.getData().subscribe(
+      (response) => {
+        this.data = response;
+        this.setUpdatedOn();
+      },
+      (error) => {
+        console.error('Error loading users', error);
+      }
+    );
+  }
 
-    if (token) {
-      const headers = new HttpHeaders().set('x-access-token', token);
-
-      this.http
-        .get<any[]>('/api/board', { headers })
-        .subscribe(
-          (response) => {
-            this.data = response;
-          },
-          (error) => {
-            console.error('Error loading data', error);
-          }
-        );
-    } else {
-      console.error('No token found');
-    }
+  setUpdatedOn(): void {
+    const now = new Date();
+    // Format date using Angular's DatePipe (e.g., '28/08/2024 14:30:15')
+    this.updatedOn = this.datePipe.transform(now, 'dd/MM/yyyy HH:mm:ss') || '';
   }
 }

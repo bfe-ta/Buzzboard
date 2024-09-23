@@ -1,14 +1,12 @@
 import { Provider, EnvironmentProviders, InjectionToken, ErrorHandler, inject, ENVIRONMENT_INITIALIZER } from '@angular/core';
 import { provideRouter, Routes } from '@angular/router';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenService } from './tokens/token.service';
 import { SessionStorageService } from './storage/session-storage.service';
 import { UserManagementService } from './user-management/user-management.service';
 import { AuthGuard } from './auth/auth.guard';
 import { AdminGuard } from './auth/admin.guard';
 import { AuthService } from './auth/auth.service';
-// import { ApiKeyInterceptor } from './interceptors/api-key.interceptor';  // Your interceptors
-// import { BackendErrorHandler } from './error-handlers/backend-error-handler';  // Error handler
+import { DataManagementService } from './data/data-management.service';
 
 export const CORE_GUARD = new InjectionToken<string>('CORE_GUARD');
 export const RELOAD_SERVICE_POLL_INTERVAL = new InjectionToken<number>('RELOAD_SERVICE_POLL_INTERVAL');
@@ -34,6 +32,7 @@ export function provideCore(options: CoreOptions): (Provider | EnvironmentProvid
     { provide: AuthGuard, useClass: AuthGuard },                   // AuthGuard
     { provide: AdminGuard, useClass: AdminGuard },                 // AdminGuard
     { provide: AuthService, useClass: AuthService},
+    { provide: DataManagementService, useClass: DataManagementService},
     // Parametrize services with options (reloadServicePollInterval)
     {
       provide: RELOAD_SERVICE_POLL_INTERVAL,
