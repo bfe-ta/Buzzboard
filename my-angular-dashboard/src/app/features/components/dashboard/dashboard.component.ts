@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../../shared/components/header/header.component';
 import { SidebarComponent } from '../../../shared/components/sidebar/sidebar.component';
 import { ContentComponent } from '../../../shared/components/content/content.component';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { DataManagementService } from '../../../core/data/data-management.service';
 import { CommonModule } from '@angular/common';
 import { DatePipe } from '@angular/common';  // Import DatePipe
 @Component({
@@ -20,31 +20,22 @@ export class DashboardComponent implements OnInit {
   mainTitle: string = '';  // Dynamic main title
   subTitle: string = 'Private Buzzloop Leaderboard';  // Dynamic subtitle
 
-  constructor(private datePipe: DatePipe, private http: HttpClient) {}
+  constructor(private dataManagementService: DataManagementService, private datePipe: DatePipe) {}
 
   ngOnInit(): void {
     this.loadData();
   }
 
   loadData(): void {
-    const token = localStorage.getItem('token'); // Retrieve the JWT token from localStorage
-
-    if (token) {
-      const headers = new HttpHeaders().set('x-access-token', token);
-
-      this.http
-        .get<any[]>('/api/board', { headers })
-        .subscribe(
-          (response) => {
-            this.data = response;
-          },
-          (error) => {
-            console.error('Error loading data', error);
-          }
-        );
-    } else {
-      console.error('No token found');
-    }
+    this.dataManagementService.getData().subscribe(
+      (response) => {
+        this.data = response;
+        this.setUpdatedOn();
+      },
+      (error) => {
+        console.error('Error loading users', error);
+      }
+    );
   }
 
   setUpdatedOn(): void {
