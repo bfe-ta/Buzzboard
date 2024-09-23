@@ -3,18 +3,27 @@
 
   <!-- User Registration Section -->
   <h2>Create New User</h2>
-  <form (submit)="registerUser()">
-    <label>Username: <input [(ngModel)]="newUser.username" required /></label>
-    <label>Password: <input [(ngModel)]="newUser.password" type="password" required /></label>
-    <label>Company: <input [(ngModel)]="newUser.company" required /></label>
+  <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
+    <label>
+      Username: 
+      <input formControlName="username" required />
+    </label>
+    <label>
+      Password: 
+      <input formControlName="password" type="password" required />
+    </label>
+    <label>
+      Company: 
+      <input formControlName="company" required />
+    </label>
     <label>
       Type:
-      <select [(ngModel)]="newUser.type">
+      <select formControlName="type">
         <option value="user">User</option>
         <option value="admin">Admin</option>
       </select>
     </label>
-    <button type="submit">Create User</button>
+    <button type="submit" [disabled]="registerForm.invalid">Create User</button>
   </form>
 
   <!-- File Upload Section -->
@@ -31,6 +40,7 @@
     </li>
   </ul>
 </div>
+
 
   
   
