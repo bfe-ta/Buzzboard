@@ -6,6 +6,7 @@ import { DataManagementService } from '../../../core/data/data-management.servic
 import { TokenService } from '../../../core/tokens/token.service';
 import { CommonModule } from '@angular/common';
 import { DatePipe } from '@angular/common';  // Import DatePipe
+import { SidebarItem } from '../../../shared/models/sidebar-item.model';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -55,4 +56,12 @@ export class DashboardComponent implements OnInit {
       this.mainTitle = "Company's";  // Fallback in case user or company is undefined
     }
   }
+
+  sidebarItems: SidebarItem[] = [
+    {
+      label: 'Board',
+      icon: '/assets/chart.png',
+      route: '/dashboard'
+    }
+  ];
 }

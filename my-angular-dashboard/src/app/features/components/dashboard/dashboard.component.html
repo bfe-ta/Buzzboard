@@ -1,7 +1,7 @@
 <div class="app-container">
-    <app-sidebar></app-sidebar>
+    <app-sidebar [sidebarItems]="sidebarItems"></app-sidebar>
     <div class="main-content">
-      <app-header></app-header>
+      <app-header [logoUrl]="logoUrl" [mainTitle]="mainTitle" [subTitle]="subTitle"></app-header>
       <app-content [data]="data" [template]="tableTemplate"></app-content>
 
       <!-- Define table layout in this template -->

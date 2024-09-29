@@ -2,14 +2,29 @@
   <div class="sidebar-logo">
     <img src="/assets/buzzloop-logo.png" alt="Buzzloop Logo" class="logo" />
   </div>
+
   <nav class="menu">
     <ul>
-      <li>
-          <img src="/assets/chart.png" alt="Chart" class="chart-image" />
-        <i class="icon-board"></i> Board
+      <!-- Loop over the sidebar items -->
+      <li *ngFor="let item of sidebarItems">
+        <a [routerLink]="item.route" *ngIf="item.route">
+          <img *ngIf="item.icon" [src]="item.icon" [alt]="item.label" class="chart-image" />
+          <i *ngIf="!item.icon" class="icon-board"></i>
+          {{ item.label }}
+        </a>
+
+        <!-- Handle submenus, if present -->
+        <ul *ngIf="item.children">
+          <li *ngFor="let child of item.children">
+            <a [routerLink]="child.route">
+              {{ child.label }}
+            </a>
+          </li>
+        </ul>
       </li>
     </ul>
   </nav>
 </aside>
+
 
   
