@@ -2,39 +2,7 @@
     <app-sidebar [sidebarItems]="sidebarItems"></app-sidebar>
     <div class="main-content">
       <app-header [logoUrl]="logoUrl" [mainTitle]="mainTitle" [subTitle]="subTitle"></app-header>
-      <app-content [data]="data" [template]="tableTemplate"></app-content>
-
-      <!-- Define table layout in this template -->
-      <ng-template #tableTemplate let-data>
-        <div class="content-header">
-          <span class="updated-on">{{ updatedOn }}</span>
-        </div>
+      <router-outlet></router-outlet>
       
-        <!-- Leaderboard Table -->
-        <table class="leaderboard">
-          <thead>
-            <tr>
-              <th>Rank</th>
-              <th>User</th>
-              <th>Department</th>
-              <th>Reuse Count</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let row of data; let i = index">
-              <td>
-                <!-- Display medals for top 3 -->
-                <span *ngIf="i === 0" class="medal medal-1"></span>
-                <span *ngIf="i === 1" class="medal medal-2"></span>
-                <span *ngIf="i === 2" class="medal medal-3"></span>
-                {{ row.Rank }}
-              </td>
-              <td>{{ row.User }}</td>
-              <td>{{ row.Department }}</td>
-              <td>{{ row['Reuse Count'] }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </ng-template>
     </div>
 </div>
