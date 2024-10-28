@@ -37,21 +37,37 @@
         cursor: pointer;
         transition: background-color 0.3s ease;
         border-radius: 10px; /* Rounded corners for nav item */
-        
+        min-height: 80px; /* Ensure enough height for both icon and label */
+        text-align: center;
+
         &:hover,
         &.active {
           background-color: #d3d3d3; /* Darker grey when active or hovered */
         }
 
-        .chart-image {
-          width: 40px; /* Adjust icon size */
-          margin-bottom: 5px; /* Space between icon and text */
-        }
+        a {
+          display: flex;
+          flex-direction: column; /* Ensure icon and text are in a vertical column */
+          align-items: center; /* Center align both the icon and text */
+          justify-content: center; /* Vertically center both icon and text */
+          text-decoration: none;
+          color: inherit;
 
-        span {
-          font-size: 14px; /* Adjust text size */
+          .chart-image {
+            width: 40px; /* Adjust icon size */
+            margin-bottom: 5px; /* Space between icon and text */
+          }
+
+          span {
+            display: block;
+            font-size: 10px; /* Adjust text size */
+            margin-top: 5px; /* Add space between the icon and text */
+            word-wrap: break-word; /* Ensure long words break onto the next line */
+          }
         }
       }
     }
   }
 }
+
+
