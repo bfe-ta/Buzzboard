@@ -1,101 +1,37 @@
-import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { UserManagementService } from '../../../core/user-management/user-management.service';
-import { DataManagementService } from '../../../core/data/data-management.service';
+import { Component, OnInit } from '@angular/core'; // Core Angular imports
+import { HeaderComponent } from '../../../shared/components/header/header.component'; // Shared header component
+import { SidebarComponent } from '../../../shared/components/sidebar/sidebar.component'; // Shared sidebar component
+import { SidebarItem } from '../../../shared/models/sidebar-item.model'; // Sidebar item model
+import { CommonModule } from '@angular/common'; // Common Angular directives
+import { RouterModule } from '@angular/router'; // For router-outlet
+
 @Component({
   selector: 'app-admin-panel',
+  standalone: true,
   templateUrl: './adminpanel.component.html',
   styleUrls: ['./adminpanel.component.scss'],
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [
+    HeaderComponent, // Import the shared header
+    SidebarComponent, // Import the shared sidebar
+    CommonModule, // Common directives like *ngIf
+    RouterModule // For <router-outlet>
+  ]
 })
-export class AdminPanelComponent {
-  selectedFile: File | null = null;
-  users: any[] = [];
-  
-  // Define the user registration form
-  registerForm: FormGroup;
+export class AdminPanelComponent implements OnInit {
+  logoUrl: string = '/assets/buzzloop-logo.png'; // Admin panel logo URL
+  mainTitle: string = 'Admin Panel'; // Title for the header
+  subTitle: string = 'Manage Users and Data'; // Subtitle for the header
 
-  constructor(private fb: FormBuilder, private userManagementService: UserManagementService, private dataManagementService: DataManagementService) {
-    this.registerForm = this.fb.group({
-      username: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      company: ['', [Validators.required]],
-      type: ['user', [Validators.required]],  // Default value
-    });
+  // Sidebar items for the admin panel
+  sidebarItems: SidebarItem[] = [
+    { label: 'User Management', icon: '/assets/user.png', route: 'user-handling' },
+    { label: 'File Upload', icon: '/assets/document.png', route: 'file-upload' }
+  ];
 
-    this.loadActiveUsers();
-  }
+  constructor() {}
 
-  // Load all active users
-  loadActiveUsers() {
-    this.userManagementService.getActiveUsers().subscribe(
-      (response) => {
-        this.users = response;
-      },
-      (error) => {
-        console.error('Error loading users', error);
-      }
-    );
-  }
-
-  // Register new user
-  registerUser() {
-    if (this.registerForm.valid) {
-      const newUser = this.registerForm.value;
-      this.userManagementService.registerUser(newUser).subscribe(
-        (response) => {
-          console.info('User created successfully:', response.message);
-        },
-        (error) => {
-          console.error('Error registering user:', error);
-        }
-      );
-    } else {
-      console.error('Form is invalid');
-    }
-  }
-
-  // Deactivate a user
-  deactivateUser(userId: number) {
-    this.userManagementService.deactivateUser(userId).subscribe(
-      (response) => {
-        console.info('User deactivated:', response.message);
-      },
-      (error) => {
-        console.error('Error deactivating user:', error);
-      }
-    );
-  }
-
-  // File selection event
-  onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    const file = input.files?.[0];
-    
-    if (file) {
-      this.selectedFile = file;
-      console.log('File selected:', file.name);
-    }
-  }
-
-  // File upload function
-  uploadFile(): void {
-    if (!this.selectedFile) {
-      console.error('No file selected!');
-      return;
-    }
-    this.dataManagementService.uploadFile(this.selectedFile).subscribe(
-      (response) => {
-        console.info('File uploaded successfully:', response.message);
-      },
-      (error) => {
-        console.error('Error uploading file:', error);
-      }
-    );
-  }
+  ngOnInit(): void {}
 }
+
 
 

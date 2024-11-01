@@ -1,0 +1,70 @@
+<div class="user-handling">
+    <div class="user-management-section">
+      <!-- User Registration Form in a card -->
+      <mat-card class="user-management-card">
+        <mat-card-title>User Registration</mat-card-title>
+        <mat-card-content>
+          <form [formGroup]="registerForm" (ngSubmit)="registerUser()" class="user-form">
+            <!-- Username -->
+            <mat-form-field class="full-width">
+              <mat-label>Username</mat-label>
+              <input matInput formControlName="username" required />
+            </mat-form-field>
+  
+            <!-- Password -->
+            <mat-form-field class="full-width">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" formControlName="password" required />
+            </mat-form-field>
+  
+            <!-- Company -->
+            <mat-form-field class="full-width">
+              <mat-label>Company</mat-label>
+              <input matInput formControlName="company" required />
+            </mat-form-field>
+  
+            <!-- User Type (Dropdown) -->
+            <mat-form-field class="full-width">
+              <mat-label>Type</mat-label>
+              <mat-select formControlName="type">
+                <mat-option value="user">User</mat-option>
+                <mat-option value="admin">Admin</mat-option>
+              </mat-select>
+            </mat-form-field>
+  
+            <!-- Submit Button -->
+            <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid" class="submit-button">
+              Create User
+            </button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  
+    <div class="active-users-section">
+      <!-- Active Users List in a card -->
+      <mat-card class="active-users-card">
+        <mat-card-title>Active Users</mat-card-title>
+        <mat-card-content class="active-users-list">
+          <mat-list>
+            <mat-list-item *ngFor="let user of users" class="user-list-item">
+              <div class="user-details">
+                <!-- Display username -->
+                <mat-icon class="user-icon">person</mat-icon>
+                <span>{{ user.username }}</span>
+              </div>
+  
+              <!-- Deactivate button with icon -->
+              <button mat-icon-button (click)="deactivateUser(user.id)" color="warn" aria-label="Deactivate user">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  
+  
+  
+  

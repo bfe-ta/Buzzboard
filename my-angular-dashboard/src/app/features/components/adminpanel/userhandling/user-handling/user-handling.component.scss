@@ -1,0 +1,136 @@
+.user-handling {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2rem;
+    
+    .user-management-section {
+      flex: 1;
+      min-width: 350px;
+  
+      .user-management-card {
+        padding: 1.5rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        
+        mat-card-title {
+          font-size: 1.5rem;
+          font-weight: bold;
+          color: #3f51b5;
+          text-align: center;
+        }
+        
+        .user-form {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+  
+          mat-form-field {
+            width: 100%;
+  
+            // Fix for label overlap issue
+            .mat-form-field-label {
+              font-size: 1rem !important;
+              line-height: 1.2 !important;  // Adjust the line height
+              padding: 0 0.5rem;            // Add some padding for the label
+              background-color: white;      // Ensure label background is visible
+            }
+  
+            input {
+              font-size: 1rem;              // Ensure consistent font size for inputs
+              padding: 0.5rem;              // Add padding to input fields for better alignment
+            }
+  
+            .mat-select {
+              font-size: 1rem;              // Make sure the select dropdown matches other inputs
+            }
+  
+            .mat-form-field-wrapper {
+              padding-bottom: 0.5rem;       // Ensure there is enough space for the label to move
+            }
+          }
+  
+          .submit-button {
+            align-self: flex-end;
+            background-color: #4caf50;
+            color: #fff;
+            
+            &:hover {
+              background-color: #45a045;
+            }
+          }
+        }
+      }
+    }
+  
+    .active-users-section {
+      flex: 1;
+      min-width: 350px;
+  
+      .active-users-card {
+        padding: 1.5rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+  
+        mat-card-title {
+          font-size: 1.5rem;
+          font-weight: bold;
+          color: #f44336;
+          text-align: center;
+        }
+  
+        .active-users-list {
+          max-height: 400px;
+          overflow-y: auto;
+        }
+  
+        .user-list-item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 1rem 0;
+          border-bottom: 1px solid #eee;
+  
+          .user-details {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+  
+            .user-icon {
+              color: #3f51b5;
+            }
+  
+            span {
+              font-weight: 500;
+              font-size: 1.1rem;
+            }
+          }
+  
+          button {
+            mat-icon {
+              color: #f44336;
+            }
+            
+            &:hover {
+              background-color: rgba(244, 67, 54, 0.1);
+            }
+          }
+        }
+      }
+    }
+  
+    // Responsive design for smaller screens
+    @media (max-width: 768px) {
+      .user-handling {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  }
+  
+  
+  
+  
+  
+  
