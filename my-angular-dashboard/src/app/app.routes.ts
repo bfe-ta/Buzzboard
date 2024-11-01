@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+// Import feature components
 import { LoginComponent } from './features/components/login/login.component';
 import { AdminPanelComponent } from './features/components/adminpanel/adminpanel.component';
 import { AuthGuard } from './core/auth/auth.guard';
@@ -15,4 +16,5 @@ export const appRoutes: Routes = [
   },
   { path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard] },
 ];
+
 
