@@ -52,12 +52,12 @@
                 <!-- Display username -->
                 <mat-icon class="user-icon">person</mat-icon>
                 <span>{{ user.username }}</span>
+
+                <!-- Deactivate button with icon -->
+                <button mat-icon-button (click)="deactivateUser(user.id)" color="warn" aria-label="Deactivate user">
+                  <mat-icon>delete</mat-icon>
+                </button>
               </div>
-  
-              <!-- Deactivate button with icon -->
-              <button mat-icon-button (click)="deactivateUser(user.id)" color="warn" aria-label="Deactivate user">
-                <mat-icon>delete</mat-icon>
-              </button>
             </mat-list-item>
           </mat-list>
         </mat-card-content>

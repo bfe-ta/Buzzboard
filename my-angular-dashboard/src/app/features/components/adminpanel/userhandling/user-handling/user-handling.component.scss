@@ -95,7 +95,7 @@
           .user-details {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 10px;
   
             .user-icon {
               color: #3f51b5;
@@ -105,15 +105,16 @@
               font-weight: 500;
               font-size: 1.1rem;
             }
-          }
-  
-          button {
-            mat-icon {
-              color: #f44336;
-            }
-            
-            &:hover {
-              background-color: rgba(244, 67, 54, 0.1);
+
+            button {
+              align-items: center;
+              mat-icon {
+                color: #f44336;
+              }
+              
+              &:hover {
+                background-color: rgba(244, 67, 54, 0.1);
+              }
             }
           }
         }

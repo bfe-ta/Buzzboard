@@ -41,7 +41,7 @@ export class UserManagementService {
 
   // Deactivate a user (admin-only functionality)
   deactivateUser(userId: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/deactivate/${userId}`, {
+    return this.http.post(`${this.apiUrl}/deactivate/${userId}`, null, {
       headers: this.getHeaders(),
     });
   }
