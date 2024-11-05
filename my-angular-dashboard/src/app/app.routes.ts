@@ -5,10 +5,16 @@ import { AuthGuard } from './core/auth/auth.guard';
 import { AdminGuard } from './core/auth/admin.guard';
 import { dashboardRoutes } from './features/components/dashboard/dashboard.routes';
 import { adminRoutes } from './features/components/adminpanel/adminpanel.routes';
+import { dashboardRoutes } from './features/components/dashboard/dashboard.routes';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { 
+    path: 'dashboard', 
+    children: dashboardRoutes,  // Register dashboard child routes here
+    canActivate: [AuthGuard] 
+  },
   { 
     path: 'dashboard', 
     children: dashboardRoutes,  // Register dashboard child routes here
