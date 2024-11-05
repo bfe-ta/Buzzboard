@@ -17,4 +17,3 @@ export const appRoutes: Routes = [
   { path: 'admin', children: adminRoutes, canActivate: [AdminGuard] },
 ];
 
-
