@@ -1,0 +1,14 @@
+.app-container {
+    display: flex; /* Flexbox layout to align sidebar and content side by side */
+    height: 100vh; /* Ensure the full height is used */
+  }
+  
+  .main-content {
+    flex-grow: 1; /* Allow main content to take up the remaining width */
+    background-color: #ffffff; /* White background for the content area */
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    font-family: 'Poppins', sans-serif; 
+    font-weight: 300px;
+  }
