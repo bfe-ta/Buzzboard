@@ -8,7 +8,7 @@ import moment from 'moment';
 @Injectable()
 export class AuthService {
 
-  private apiUrl = 'http://localhost:8080/api/auth';  
+  private apiUrl = 'http://18.143.66.178:80/api/auth';  
   constructor(private http: HttpClient, private tokenService: TokenService) {}
 
   login(username: string, password: string) {
