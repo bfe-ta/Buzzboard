@@ -8,6 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: github-pages
 
     steps:
       - name: Checkout code
@@ -29,6 +30,8 @@ jobs:
           npm run build
 
       - name: Deploy to GitHub Pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.BUZZBOARD_PAGE_DEV_TOKEN }}
         run: |
           cd my-angular-dashboard
           git config --global user.email "lim.yan@bridgesforenterprise.com"
