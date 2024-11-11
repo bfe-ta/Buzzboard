@@ -1,6 +1,6 @@
 import { ApplicationConfig } from '@angular/core';
 import { provideHttpClient } from '@angular/common/http';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withHashLocation } from '@angular/router';
 import { appRoutes } from './app.routes';  // Import routes
 import { provideCore } from './core/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';  // Import core services (like AuthGuard, etc.)
@@ -8,7 +8,10 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 export const appConfig: ApplicationConfig = {
   providers: [
     provideHttpClient(),                    // Provide HTTP client globally
-    provideRouter(appRoutes),               // Register routing globally using `provideRouter`
+    provideRouter(
+      appRoutes,
+      withHashLocation()
+    ),               // Register routing globally using `provideRouter`
     ...provideCore({                        // Register all core services globally
       routes: appRoutes,                    // Pass routes to core (if needed)
       reloadServicePollInterval: 30 * 60 * 1000,  // Polling interval (optional)
