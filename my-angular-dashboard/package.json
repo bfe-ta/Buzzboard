@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuartion=development --base-href=/Buzzboard/",
+    "build": "ng build --configuration=development --base-href=/Buzzboard/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
