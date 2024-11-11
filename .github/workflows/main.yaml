@@ -8,6 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: github-pages
 
     steps:
       - name: Checkout code
@@ -30,10 +31,12 @@ jobs:
 
       - name: Deploy to GitHub Pages
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAGE_DEV_TOKEN }}
         run: |
           cd my-angular-dashboard
-          npm run ng -- deploy --repo="https://github.com/bfe-ta/Buzzboard.git" --base-href=Buzzboard --name=yanruibfe --email=lim.yan@bridgesforenterprise.com
+          git config --global user.email "lim.yan@bridgesforenterprise.com"
+          git config --global user.name "yanruibfe"
+          npm run ng -- deploy --repo="https://x-access-token:${{ secrets.PAGE_DEV_TOKEN }}@github.com/bfe-ta/Buzzboard.git" --base-href=Buzzboard
 
 
 # name: CI and Deploy to GitHub Pages
