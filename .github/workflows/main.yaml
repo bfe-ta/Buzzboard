@@ -33,6 +33,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.BUZZBOARD_PAGE_DEV_TOKEN }}
         run: |
           cd my-angular-dashboard
+          git config --global user.email "lim.yan@bridgesforenterprise.com"
+          git config --global user.name "yanruibfe"
           npm run ng -- deploy --repo="https://github.com/bfe-ta/Buzzboard.git" --base-href=Buzzboard
 
 
