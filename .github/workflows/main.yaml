@@ -36,7 +36,7 @@ jobs:
           cd my-angular-dashboard
           git config --global user.email "lim.yan@bridgesforenterprise.com"
           git config --global user.name "yanruibfe"
-          npm run ng -- deploy --repo="https://x-access-token:${{ secrets.PAGE_DEV_TOKEN }}@github.com/bfe-ta/Buzzboard.git" --base-href=Buzzboard
+          npm run ng -- deploy --repo="https://x-access-token:${{ secrets.PAGE_DEV_TOKEN }}@github.com/bfe-ta/Buzzboard.git"
 
 
 # name: CI and Deploy to GitHub Pages
