@@ -10,7 +10,7 @@ import { Token } from '@angular/compiler';
 
 @Injectable()
 export class UserManagementService {
-  private apiUrl = 'http://localhost:8080/api/auth';  // Change this based on your backend API
+  private apiUrl = 'http://18.143.66.178:80/api/auth';  // Change this based on your backend API
 
   constructor(private http: HttpClient, private router: Router, private authService: AuthService, private tokenService: TokenService, private sessionStorageService: SessionStorageService) {}
 

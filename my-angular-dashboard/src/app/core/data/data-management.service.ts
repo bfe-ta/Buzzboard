@@ -7,7 +7,7 @@ import { UserManagementService } from '../user-management/user-management.servic
   providedIn: 'root'
 })
 export class DataManagementService {
-  private apiUrl = 'http://localhost:8080/api';  // Change this based on your backend API
+  private apiUrl = 'http://18.143.66.178:80/api';  // Change this based on your backend API
 
   constructor(private http: HttpClient, private userManagementService: UserManagementService) {}
 
