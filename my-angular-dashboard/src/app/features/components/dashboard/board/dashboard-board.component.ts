@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ContentComponent } from '../../../../shared/components/content/content.component';
-import { DashboardDataService } from '../services/dashboard-data.service';
-
+import { DashboardDataService } from '../services/dashboard-data.service'; 
 @Component({
   selector: 'app-dashboard-board',
   standalone: true,
@@ -17,15 +16,18 @@ export class DashboardBoardComponent implements OnInit {
   constructor(private dashboardDataService: DashboardDataService) {}
 
   ngOnInit(): void {
-    // Subscribe to the data emitted by DashboardDataService
-    this.dashboardDataService.data$.subscribe((data) => {
-      this.data = data;
-    });
+    this.loadDashboardData();
+  }
 
-    // Subscribe to updatedOn emitted by DashboardDataService
-    this.dashboardDataService.updatedOn$.subscribe((updatedOn) => {
-      this.updatedOn = updatedOn;  // Store the updatedOn value
-    });
+  loadDashboardData(): void {
+    this.dashboardDataService.getDashboardData().subscribe(
+      (data) => {
+        this.data = data;
+      },
+      (error) => {
+        console.error('Error fetching dashboard data', error);
+      }
+    );
   }
 }
 

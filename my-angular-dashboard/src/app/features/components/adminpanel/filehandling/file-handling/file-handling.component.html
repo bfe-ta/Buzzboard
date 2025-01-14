@@ -1,6 +1,41 @@
 <div class="file-handler">
-    <h1>Upload File</h1>
-    <input type="file" (change)="onFileSelected($event)" accept=".csv,.xlsx" />
-    <button mat-raised-button color="primary" (click)="uploadFile()">Upload File</button>
+  <h1>Upload and Edit File</h1>
+  <input type="file" (change)="onFileSelected($event)" accept=".csv,.xlsx" />
+  <div class="button-group">
+    <button mat-raised-button color="warn" (click)="updateChanges()">Update Changes</button>
+    <button mat-raised-button color="primary" (click)="saveFile()">Download</button>
+    <button mat-raised-button color="accent" (click)="uploadFile()">Upload File</button>
   </div>
-  
+ </div>
+ 
+ 
+ <div *ngIf="data && data.length > 0" class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>#</th> <!-- Row numbers -->
+        <th *ngFor="let header of headers; let headerIndex = index">
+          <input [(ngModel)]="headers[headerIndex]" placeholder="Header {{ headerIndex + 1 }}" />
+        </th>
+        <th>Actions</th> <!-- Actions column -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of data; let rowIndex = index">
+        <td><b>{{ rowIndex + 1 }}</b></td> <!-- Row numbers -->
+        <td *ngFor="let cell of row; let colIndex = index">
+          <input [(ngModel)]="data[rowIndex][colIndex]" />
+        </td>
+        <td>
+          <button mat-raised-button color="warn" (click)="deleteRow(rowIndex)">Delete</button>
+        </td>
+      </tr>
+    </tbody>    
+  </table>
+  <button mat-raised-button color="warn" (click)="addRow()">Add Row</button>
+  <button mat-raised-button color="primary" (click)="addColumn()">Add Column</button>
+ </div>
+ 
+ 
+ 
+ 
