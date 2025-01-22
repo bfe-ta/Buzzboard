@@ -6,20 +6,23 @@
     <button mat-raised-button color="primary" (click)="saveFile()">Download</button>
     <button mat-raised-button color="accent" (click)="uploadFile()">Upload File</button>
   </div>
- </div>
- 
- 
- <div *ngIf="data && data.length > 0" class="table-container">
+</div>
+
+<div *ngIf="data && data.length > 0" class="table-container">
   <table>
     <thead>
       <tr>
         <th>#</th> <!-- Row numbers -->
         <th *ngFor="let header of headers; let headerIndex = index">
           <input [(ngModel)]="headers[headerIndex]" placeholder="Header {{ headerIndex + 1 }}" />
-          <button class="sort-button" mat-button (click)="sortColumn(headerIndex, 'asc')">▲</button>
-          <button class="sort-button" mat-button (click)="sortColumn(headerIndex, 'desc')">▼</button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="sortColumn(headerIndex, 'asc')">Sort Ascending</button>
+            <button mat-menu-item (click)="sortColumn(headerIndex, 'desc')">Sort Descending</button>
+            <button mat-menu-item (click)="deleteColumn(headerIndex)">Delete Column</button>
+          </mat-menu>
+          <mat-icon class="clickable-icon" [matMenuTriggerFor]="menu">filter_alt</mat-icon>
         </th>
-        <th></th> <!-- Actions column -->
+        <th>Actions</th> <!-- Actions column -->
       </tr>
     </thead>
     <tbody>
@@ -45,8 +48,4 @@
   </table>
   <button mat-raised-button color="warn" (click)="addRow()">Add Row</button>
   <button mat-raised-button color="primary" (click)="addColumn()">Add Column</button>
- </div>
- 
- 
- 
- 
+</div>

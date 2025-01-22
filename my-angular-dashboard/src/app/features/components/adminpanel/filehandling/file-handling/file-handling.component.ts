@@ -9,8 +9,7 @@ import { saveAs } from 'file-saver';
 import { FormsModule } from '@angular/forms';
 import { DashboardDataService } from '../../../dashboard/services/dashboard-data.service';
 import { DatePipe } from '@angular/common';
-
-
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @Component({
@@ -20,6 +19,7 @@ styleUrls: ['./file-handling.component.scss'],
 standalone: true,
 imports: [
   MatButtonModule, // Buttons
+  MatMenuModule,
   MatSnackBarModule, // Snack bar for notifications
   MatIconModule, // Icons
   CommonModule, // Common directives like *ngIf
@@ -78,17 +78,13 @@ readFile(file: File): void {
 
 sortColumn(columnIndex: number, direction: 'asc' | 'desc'): void {
   this.data.sort((a, b) => {
-    const valA = a[columnIndex] || '';
-    const valB = b[columnIndex] || '';
-
+    const valA = isNaN(Number(a[columnIndex])) ? a[columnIndex] : Number(a[columnIndex]);
+    const valB = isNaN(Number(b[columnIndex])) ? b[columnIndex] : Number(b[columnIndex]);
     if (valA === valB) return 0;
 
     return direction === 'asc' ? (valA < valB ? -1 : 1) : valA > valB ? -1 : 1;
   });
 
-  this.snackBar.open(`Column sorted in ${direction}ending order!`, 'Close', {
-    duration: 3000,
-  });
 }
 
 updateChanges(): void {
