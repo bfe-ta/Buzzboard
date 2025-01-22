@@ -30,6 +30,7 @@ export class FileHandlingComponent {
 selectedFile: File | null = null;
 data: any[][] = []; // Holds the Excel data as a 2D array
 headers: string[] = []; // Holds the table headers
+filteredData: any[][] = []; // Holds the filtered data
 
 constructor(
   private dataManagementService: DataManagementService, 
@@ -73,6 +74,21 @@ readFile(file: File): void {
 //   const input = event.target as HTMLInputElement;
 //   this.data[rowIndex][colIndex] = input.value;
 // }
+
+sortColumn(columnIndex: number, direction: 'asc' | 'desc'): void {
+  this.data.sort((a, b) => {
+    const valA = a[columnIndex] || '';
+    const valB = b[columnIndex] || '';
+
+    if (valA === valB) return 0;
+
+    return direction === 'asc' ? (valA < valB ? -1 : 1) : valA > valB ? -1 : 1;
+  });
+
+  this.snackBar.open(`Column sorted in ${direction}ending order!`, 'Close', {
+    duration: 3000,
+  });
+}
 
 updateChanges(): void {
   this.snackBar.open('Changes are already saved in memory!', 'Close', { duration: 3000 });

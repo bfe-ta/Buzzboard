@@ -16,6 +16,8 @@
         <th>#</th> <!-- Row numbers -->
         <th *ngFor="let header of headers; let headerIndex = index">
           <input [(ngModel)]="headers[headerIndex]" placeholder="Header {{ headerIndex + 1 }}" />
+          <button mat-button (click)="sortColumn(headerIndex, 'asc')">▲</button>
+          <button mat-button (click)="sortColumn(headerIndex, 'desc')">▼</button>
         </th>
         <th>Actions</th> <!-- Actions column -->
       </tr>
