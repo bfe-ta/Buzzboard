@@ -12,6 +12,7 @@ import { DatePipe } from '@angular/common';
 
 
 
+
 @Component({
 selector: 'app-file-handling',
 templateUrl: './file-handling.component.html',
@@ -158,7 +159,23 @@ deleteRow(rowIndex: number): void {
  this.data.splice(rowIndex, 1); // Remove the row from the data array
  this.snackBar.open('Row deleted successfully!', 'Close', { duration: 3000 });
 }
+
+deleteColumn(columnIndex: number): void {
+  // Remove the column header
+  this.headers.splice(columnIndex, 1);
+
+  // Remove the corresponding column data from each row
+  this.data.forEach(row => {
+    row.splice(columnIndex, 1);
+  });
+
+  this.snackBar.open(`Column ${columnIndex + 1} deleted successfully!`, 'Close', {
+    duration: 3000,
+  });
 }
+
+}
+
 
 
 

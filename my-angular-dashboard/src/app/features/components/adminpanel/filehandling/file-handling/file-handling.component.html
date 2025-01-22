@@ -16,10 +16,10 @@
         <th>#</th> <!-- Row numbers -->
         <th *ngFor="let header of headers; let headerIndex = index">
           <input [(ngModel)]="headers[headerIndex]" placeholder="Header {{ headerIndex + 1 }}" />
-          <button mat-button (click)="sortColumn(headerIndex, 'asc')">▲</button>
-          <button mat-button (click)="sortColumn(headerIndex, 'desc')">▼</button>
+          <button class="sort-button" mat-button (click)="sortColumn(headerIndex, 'asc')">▲</button>
+          <button class="sort-button" mat-button (click)="sortColumn(headerIndex, 'desc')">▼</button>
         </th>
-        <th>Actions</th> <!-- Actions column -->
+        <th></th> <!-- Actions column -->
       </tr>
     </thead>
     <tbody>
@@ -29,10 +29,19 @@
           <input [(ngModel)]="data[rowIndex][colIndex]" />
         </td>
         <td>
-          <button mat-raised-button color="warn" (click)="deleteRow(rowIndex)">Delete</button>
+          <mat-icon (click)="deleteRow(rowIndex)" class="clickable-icon">delete</mat-icon>
         </td>
       </tr>
-    </tbody>    
+    </tbody>
+    <tfoot>
+      <tr>
+        <td></td> <!-- Empty cell for row numbers -->
+        <td *ngFor="let header of headers; let headerIndex = index">
+          <mat-icon (click)="deleteColumn(headerIndex)" class="clickable-icon">delete</mat-icon>
+        </td>
+        <td></td> <!-- Empty cell for Actions column -->
+      </tr>
+    </tfoot>
   </table>
   <button mat-raised-button color="warn" (click)="addRow()">Add Row</button>
   <button mat-raised-button color="primary" (click)="addColumn()">Add Column</button>
