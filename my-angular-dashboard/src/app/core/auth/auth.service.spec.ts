@@ -34,7 +34,7 @@ describe('AuthService', () => {
       expect(res.token).toEqual('jwt-token');
     });
 
-    const req = httpController.expectOne('http://localhost:8080/api/auth/signin');
+    const req = httpController.expectOne('http://localhost:80/api/auth/signin');
     expect(req.request.method).toBe('POST');
     req.flush(mockResponse); // Simulate server response
   });
